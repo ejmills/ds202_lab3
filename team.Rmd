@@ -5,3 +5,7 @@ date: "February 19, 2019"
 output: html_document
 ---
 
+```{r}
+data(happy, package="productplots")
+HAPPY <- readRDS("HAPPY.rds")
+```
