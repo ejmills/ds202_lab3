@@ -8,4 +8,10 @@ output: html_document
 ```{r}
 data(happy, package="productplots")
 HAPPY <- readRDS("HAPPY.rds")
+head(HAPPY)
+```
+
+1.)
+```{r}
+HAPPY$POLVIEWS[HAPPY$POLVIEWS=="IAP" | HAPPY$POLVIEWS=="DK" | HAPPY$POLVIEWS=="NA"] <- NA
 ```
