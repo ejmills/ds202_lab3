@@ -15,3 +15,14 @@ head(HAPPY)
 ```{r}
 HAPPY$POLVIEWS[HAPPY$POLVIEWS=="IAP" | HAPPY$POLVIEWS=="DK" | HAPPY$POLVIEWS=="NA"] <- NA
 ```
+
+2.)
+```{r}
+HAPPY$AGE <- as.numeric(gsub("([0-9]+).*$", "\\1", HAPPY$AGE))
+```
+
+3.)
+```{r}
+HAPPY$AGE <- factor(HAPPY$AGE, levels = c(1:89))
+head(HAPPY)
+```

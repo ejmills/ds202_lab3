@@ -193,7 +193,44 @@ $(document).ready(function () {
 
 
 <pre class="r"><code>data(happy, package=&quot;productplots&quot;)
-HAPPY &lt;- readRDS(&quot;HAPPY.rds&quot;)</code></pre>
+HAPPY &lt;- readRDS(&quot;HAPPY.rds&quot;)
+head(HAPPY)</code></pre>
+<pre><code>##           HAPPY YEAR AGE    SEX       MARITAL         DEGREE       FINRELA
+## 1 NOT TOO HAPPY 1972  23 FEMALE NEVER MARRIED       BACHELOR       AVERAGE
+## 2 NOT TOO HAPPY 1972  70   MALE       MARRIED LT HIGH SCHOOL ABOVE AVERAGE
+## 3  PRETTY HAPPY 1972  48 FEMALE       MARRIED    HIGH SCHOOL       AVERAGE
+## 4 NOT TOO HAPPY 1972  27 FEMALE       MARRIED       BACHELOR       AVERAGE
+## 5  PRETTY HAPPY 1972  61 FEMALE       MARRIED    HIGH SCHOOL ABOVE AVERAGE
+## 6  PRETTY HAPPY 1972  26   MALE NEVER MARRIED    HIGH SCHOOL ABOVE AVERAGE
+##      HEALTH WTSSALL          PARTYID POLVIEWS
+## 1      GOOD  0.4446     IND,NEAR DEM      IAP
+## 2      FAIR  0.8893 NOT STR DEMOCRAT      IAP
+## 3 EXCELLENT  0.8893      INDEPENDENT      IAP
+## 4      GOOD  0.8893 NOT STR DEMOCRAT      IAP
+## 5      GOOD  0.8893  STRONG DEMOCRAT      IAP
+## 6      GOOD  0.4446     IND,NEAR DEM      IAP</code></pre>
+<p>1.)</p>
+<pre class="r"><code>HAPPY$POLVIEWS[HAPPY$POLVIEWS==&quot;IAP&quot; | HAPPY$POLVIEWS==&quot;DK&quot; | HAPPY$POLVIEWS==&quot;NA&quot;] &lt;- NA</code></pre>
+<p>2.)</p>
+<pre class="r"><code>HAPPY$AGE &lt;- as.numeric(gsub(&quot;([0-9]+).*$&quot;, &quot;\\1&quot;, HAPPY$AGE))</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<p>3.)</p>
+<pre class="r"><code>HAPPY$AGE &lt;- factor(HAPPY$AGE, levels = c(1:89))
+head(HAPPY)</code></pre>
+<pre><code>##           HAPPY YEAR AGE    SEX       MARITAL         DEGREE       FINRELA
+## 1 NOT TOO HAPPY 1972  23 FEMALE NEVER MARRIED       BACHELOR       AVERAGE
+## 2 NOT TOO HAPPY 1972  70   MALE       MARRIED LT HIGH SCHOOL ABOVE AVERAGE
+## 3  PRETTY HAPPY 1972  48 FEMALE       MARRIED    HIGH SCHOOL       AVERAGE
+## 4 NOT TOO HAPPY 1972  27 FEMALE       MARRIED       BACHELOR       AVERAGE
+## 5  PRETTY HAPPY 1972  61 FEMALE       MARRIED    HIGH SCHOOL ABOVE AVERAGE
+## 6  PRETTY HAPPY 1972  26   MALE NEVER MARRIED    HIGH SCHOOL ABOVE AVERAGE
+##      HEALTH WTSSALL          PARTYID POLVIEWS
+## 1      GOOD  0.4446     IND,NEAR DEM     &lt;NA&gt;
+## 2      FAIR  0.8893 NOT STR DEMOCRAT     &lt;NA&gt;
+## 3 EXCELLENT  0.8893      INDEPENDENT     &lt;NA&gt;
+## 4      GOOD  0.8893 NOT STR DEMOCRAT     &lt;NA&gt;
+## 5      GOOD  0.8893  STRONG DEMOCRAT     &lt;NA&gt;
+## 6      GOOD  0.4446     IND,NEAR DEM     &lt;NA&gt;</code></pre>
 
 
 
