@@ -212,7 +212,7 @@ head(HAPPY)</code></pre>
 <p>1.)</p>
 <pre class="r"><code>HAPPY$POLVIEWS[HAPPY$POLVIEWS==&quot;IAP&quot; | HAPPY$POLVIEWS==&quot;DK&quot; | HAPPY$POLVIEWS==&quot;NA&quot;] &lt;- NA</code></pre>
 <p>2.)</p>
-<pre class="r"><code>HAPPY$AGE &lt;- as.numeric(gsub(&quot;([0-9]+).*$&quot;, &quot;\\1&quot;, HAPPY$AGE))</code></pre>
+<pre class="r"><code>HAPPY$AGE &lt;- as.numeric(as.character(HAPPY$AGE))</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <p>3.)</p>
 <pre class="r"><code>HAPPY$AGE &lt;- factor(HAPPY$AGE, levels = c(1:89))

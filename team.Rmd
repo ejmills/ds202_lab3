@@ -18,7 +18,8 @@ HAPPY$POLVIEWS[HAPPY$POLVIEWS=="IAP" | HAPPY$POLVIEWS=="DK" | HAPPY$POLVIEWS=="N
 
 2.)
 ```{r}
-HAPPY$AGE <- as.numeric(gsub("([0-9]+).*$", "\\1", HAPPY$AGE))
+HAPPY$AGE <- as.numeric(as.character(HAPPY$AGE))
+unique(HAPPY$AGE)
 ```
 
 3.)
