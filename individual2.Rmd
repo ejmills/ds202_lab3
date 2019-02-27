@@ -9,22 +9,70 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+Data Cleaning
+```{r}
+library(tidyverse)
+data(happy, package="productplots")
+HAPPY <- readRDS("HAPPY.rds")
+head(HAPPY)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+1.)
+```{r}
+HAPPY[HAPPY=="IAP" | HAPPY=="DK" | HAPPY=="NA"] <- NA
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+2.)
+```{r}
+HAPPY$AGE[HAPPY$AGE == "89 OR OLDER"] <- 89
+HAPPY$AGE <- as.numeric(as.character(HAPPY$AGE))
+unique(HAPPY$AGE)
+```
+
+3.)
+```{r}
+HAPPY$AGE <- factor(HAPPY$AGE, levels = c(1:89))
+head(HAPPY)
+```
+
+Data Exploration
+1.)
+```{r}
+library(ggplot2)
+happy2 <- HAPPY[complete.cases(HAPPY[,'HAPPY']), ]
+happy2$AGE <- as.numeric(as.character(happy2$AGE))
+ggplot(data = happy2, aes(AGE)) + geom_histogram(binwidth = 5)
+
+ggplot(data=happy2, aes(YEAR)) + geom_histogram()
+```
+
+2.)
+```{r}
+# plot 1
+ggplot(data=happy2, aes(x=AGE)) + facet_wrap(~HAPPY) + geom_histogram(binwidth = 1)
+
+# plot 2
+ggplot(data=happy2, aes(x=DEGREE), stat="count") + 
+  facet_wrap(~HAPPY) + geom_bar(mapping = aes(fill=DEGREE)) +
+  coord_flip() +
+  labs(title = "Happiness Based on Degree Held") +
+  theme(plot.title = element_text(size = rel(2)),
+        axis.title = element_blank(), 
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+# plot 3
+
+ggplot(data=happy2, aes(x=FINRELA), stat="count") + 
+  facet_wrap(~HAPPY) + geom_bar(mapping = aes(fill=DEGREE)) +
+  labs(title = "Happiness Based on Relative Financial Stability") +
+  theme(plot.title = element_text(size = rel(1.5)),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_text(angle = 90, size = rel(.75)))
+
+ggplot(data=happy2, aes(x=FINRELA, y=HAPPY)) + geom_jitter(size=1, mapping = aes(color=SEX, shape=SEX))
+```
+
+
+
+
+

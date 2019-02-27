@@ -18,6 +18,7 @@ HAPPY$POLVIEWS[HAPPY$POLVIEWS=="IAP" | HAPPY$POLVIEWS=="DK" | HAPPY$POLVIEWS=="N
 
 2.)
 ```{r}
+HAPPY$AGE[HAPPY$AGE == "89 OR OLDER"] <- 89
 HAPPY$AGE <- as.numeric(as.character(HAPPY$AGE))
 unique(HAPPY$AGE)
 ```
@@ -26,4 +27,9 @@ unique(HAPPY$AGE)
 ```{r}
 HAPPY$AGE <- factor(HAPPY$AGE, levels = c(1:89))
 head(HAPPY)
+```
+
+4.)
+```{r}
+
 ```
