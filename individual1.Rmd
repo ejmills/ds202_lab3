@@ -5,3 +5,50 @@ date: "February 19, 2019"
 output: html_document
 ---
 
+Data Cleaning
+
+```{r}
+library(ggplot2)
+
+data(happy, package="productplots")
+HAPPY <- readRDS("HAPPY.rds")
+head(HAPPY)
+```
+
+1.)
+```{r}
+HAPPY$POLVIEWS[HAPPY$POLVIEWS=="IAP" | HAPPY$POLVIEWS=="DK" | HAPPY$POLVIEWS=="NA"] <- NA
+```
+
+2.)
+```{r}
+HAPPY$AGE[HAPPY$AGE == "89 OR OLDER"] <- 89
+HAPPY$AGE <- as.numeric(as.character(HAPPY$AGE))
+unique(HAPPY$AGE)
+```
+
+3.)
+```{r}
+HAPPY$AGE <- factor(HAPPY$AGE, levels = c(1:89))
+head(HAPPY)
+```
+
+Data Exploration
+
+1.)
+```{r}
+HAPPY$AGE <- as.numeric(as.character(HAPPY$AGE))
+ggplot(data = HAPPY, aes(x = AGE, color = SEX)) + geom_histogram(binwidth = 2) + facet_wrap(~SEX)
+
+ggplot(data = HAPPY, aes(x = YEAR)) + geom_histogram(binwidth = 5)
+```
+
+2.)
+```{r}
+ggplot(data = HAPPY, aes(x=MARITAL), stat = "Count") + geom_bar() + facet_wrap(SEX~HAPPY) + coord_flip()
+
+
+ggplot(data = HAPPY, aes(x=YEAR), stat = "Count") + geom_bar() + facet_wrap(SEX~HAPPY)
+
+ggplot(data = HAPPY, aes(x=DEGREE), stat = "COunt") + geom_bar() + facet_wrap(SEX~HAPPY) + coord_flip()
+```
