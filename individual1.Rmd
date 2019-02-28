@@ -38,17 +38,16 @@ Data Exploration
 1.)
 ```{r}
 HAPPY$AGE <- as.numeric(as.character(HAPPY$AGE))
-ggplot(data = HAPPY, aes(x = AGE, color = SEX)) + geom_histogram(binwidth = 2) + facet_wrap(~SEX)
+ggplot(data = HAPPY, aes(x = AGE, color = SEX)) + geom_histogram(binwidth = 2) + facet_wrap(~SEX) + ggtitle("Number of people asked vs age")
 
-ggplot(data = HAPPY, aes(x = YEAR)) + geom_histogram(binwidth = 5)
+ggplot(data = HAPPY, aes(x = YEAR)) + geom_histogram(binwidth = 5) + facet_wrap(~SEX) + ggtitle("Number of people vs Year")
 ```
 
 2.)
 ```{r}
-ggplot(data = HAPPY, aes(x=MARITAL), stat = "Count") + geom_bar() + facet_wrap(SEX~HAPPY) + coord_flip()
+ggplot(data = HAPPY, aes(x=MARITAL), stat = "Count") + geom_bar() + facet_wrap(SEX~HAPPY) + coord_flip() + ggtitle("Marital status vs Happyness")
 
+ggplot(data = HAPPY, aes(x=YEAR), stat = "Count") + geom_bar() + facet_wrap(SEX~HAPPY) + ggtitle("Year vs Happyness")
 
-ggplot(data = HAPPY, aes(x=YEAR), stat = "Count") + geom_bar() + facet_wrap(SEX~HAPPY)
-
-ggplot(data = HAPPY, aes(x=DEGREE), stat = "COunt") + geom_bar() + facet_wrap(SEX~HAPPY) + coord_flip()
+ggplot(data = HAPPY, aes(x=DEGREE), stat = "COunt") + geom_bar() + facet_wrap(SEX~HAPPY) + coord_flip() + ggtitle("Level of Education vs Happyness")
 ```

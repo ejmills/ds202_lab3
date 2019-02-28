@@ -6,6 +6,8 @@ output: html_document
 ---
 
 ```{r}
+library(ggplot2)
+
 data(happy, package="productplots")
 HAPPY <- readRDS("HAPPY.rds")
 head(HAPPY)
@@ -29,7 +31,24 @@ HAPPY$AGE <- factor(HAPPY$AGE, levels = c(1:89))
 head(HAPPY)
 ```
 
-4.)
+Data Exploration Questions
+
+1.)
+
+As seen in the charts below the variables that we looked into were the age of the people and the year that people were asked. What we found was the the years all roughly had the same number of people asked from year to year, however the age of the people who were aked was skewed to the left for both men and women. This means that for both men and women more young people answered the survey than old people.
+
 ```{r}
+HAPPY$AGE <- as.numeric(as.character(HAPPY$AGE))
+ggplot(data = HAPPY, aes(x = AGE, color = SEX)) + geom_histogram(binwidth = 2) + facet_wrap(~SEX) + ggtitle("Number of people asked vs age")
+
+ggplot(data = HAPPY, aes(x = YEAR)) + geom_histogram(binwidth = 5) + facet_wrap(~SEX) + ggtitle("Number of people vs Year")
+```
+
+2.)
+```{R}
 
 ```
+
+3.)
+
+What I have discovered from this data set was that there is no significant correlation between a person's happyness and their marital status. This came as a supprise to me since we now days tend to think that people who are maried are happier. Another thing that I discovered was that people who have a higher education seem to report that they are happier than people who have had as much education. This trend also reflects the happyness of people from year to year which also seems to be going up from year to year. 
