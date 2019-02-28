@@ -1,6 +1,6 @@
 ---
 title: "Team"
-author: "Evan Mills"
+author: "Evan Mills - Maxwell Farver"
 date: "February 19, 2019"
 output: html_document
 ---
@@ -45,10 +45,35 @@ ggplot(data = HAPPY, aes(x = YEAR)) + geom_histogram(binwidth = 5) + facet_wrap(
 ```
 
 2.)
-```{R}
 
+The charts shown below tell us a few things. We can see that the sample taken was mostly made up of younger (~<60) adults. This population tended to be happier, with the younge ages having a spike in the "Pretty Happy" group. The next chart lets us see that degree held is not a very good indicator of happiness. The final chart shows that while there may be a small tendency toward not being happy for people with a far below average financial stability, it isn't a rock solid indicator.
+```{r}
+HAPPY <- HAPPY[complete.cases(HAPPY[,'HAPPY']), ]
+
+
+# plot 1
+ggplot(data=HAPPY, aes(x=AGE)) + facet_wrap(~HAPPY) + geom_histogram(binwidth = 1)
+
+# plot 2
+ggplot(data=HAPPY, aes(x=DEGREE), stat="count") + 
+  facet_wrap(~HAPPY) + geom_bar(mapping = aes(fill=DEGREE)) +
+  coord_flip() +
+  labs(title = "Happiness Based on Degree Held") +
+  theme(plot.title = element_text(size = rel(2)),
+        axis.title = element_blank(), 
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+# plot 3
+
+ggplot(data=HAPPY, aes(x=FINRELA), stat="count") + 
+  facet_wrap(~HAPPY) + geom_bar(mapping = aes(fill=SEX)) +
+  labs(title = "Happiness Based on Relative Financial Stability") +
+  theme(plot.title = element_text(size = rel(1.5)),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_text(angle = 90, size = rel(.75)))
 ```
+
 
 3.)
 
-What I have discovered from this data set was that there is no significant correlation between a person's happyness and their marital status. This came as a supprise to me since we now days tend to think that people who are maried are happier. Another thing that I discovered was that people who have a higher education seem to report that they are happier than people who have had as much education. This trend also reflects the happyness of people from year to year which also seems to be going up from year to year. 
+What we have discovered from this data set was that there is no significant correlation between a person's happyness and their marital status. This came as a supprise to me since we now days tend to think that people who are maried are happier. Another thing that I discovered was that people who have a higher education seem to report that they are happier than people who have had as much education. This trend also reflects the happyness of people from year to year which also seems to be going up from year to year. 
