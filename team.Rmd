@@ -76,4 +76,6 @@ ggplot(data=HAPPY, aes(x=FINRELA), stat="count") +
 
 3.)
 
-What we have discovered from this data set was that there is no significant correlation between a person's happyness and their marital status. This came as a supprise to me since we now days tend to think that people who are maried are happier. Another thing that I discovered was that people who have a higher education seem to report that they are happier than people who have had as much education. This trend also reflects the happyness of people from year to year which also seems to be going up from year to year. 
+What we have discovered from this data set was that there is no significant correlation between a person's happyness and their marital status. This came as a supprise to me since we now days tend to think that people who are maried are happier. Another thing that I discovered was that people who have a higher education seem to report that they are happier than people who have had as much education. This trend also reflects the happyness of people from year to year which also seems to be going up from year to year.
+
+We also learned that while something like having an advanced degree or being well off financially may seem like it's a big indicator of whether or not someone is happy, that rarely actually tends to be the case. Everything we've seen shows that there are plenty of other factors that need to be taken into account.
